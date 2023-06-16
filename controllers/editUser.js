@@ -1,5 +1,5 @@
-const model = require('../models/schema');
-const validateUser =  require('../helpers/validateUser');
+const model = require('../models/userSchema');
+const validateUser = require('../helpers/validateUser');
 
 /* 
 API name : api/user/editUser

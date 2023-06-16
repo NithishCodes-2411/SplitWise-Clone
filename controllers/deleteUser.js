@@ -1,6 +1,6 @@
-const model = require('../models/schema');
+const model = require('../models/userSchema');
 const { ObjectId } = require('mongodb');
-const validateUser =  require('../helpers/validateUser');
+const validateUser = require('../helpers/validateUser');
 
 
 /* 
@@ -19,7 +19,7 @@ const deleteUser = async (req, res) => {
         const user = await model.User.findOne({
             emailId: req.body.emailId
         })
-        
+
         if (!user) {
             res.status(400).json({
                 message: "USer does not found or exist"

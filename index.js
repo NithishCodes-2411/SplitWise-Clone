@@ -18,12 +18,13 @@ mongoose.connect(dataBaseURL)
     })
 ;
 
-//controller import
+//requring routes
 const userRouter = require('./routes/userRouter');
-
+const groupRouter = require('./routes/groupRouter');
 
 
 app.use('/api/user' , userRouter);
+app.use('/api/group' , groupRouter);
 
    
 app.listen(3000, () => {
