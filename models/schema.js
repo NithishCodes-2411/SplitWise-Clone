@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-
-
-
 const User = new mongoose.Schema({
     firstName: {
         type: String,
@@ -19,6 +16,10 @@ const User = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    securityQuestion : {
+        type : String ,
+        required : true
     }
 })
 module.exports.User = mongoose.model('user', User);
