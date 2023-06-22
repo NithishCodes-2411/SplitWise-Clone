@@ -43,8 +43,8 @@ const userRegistration = async (req, res) => {
         });
 
     }
+
+
 }
-
-
 
 module.exports = userRegistration;

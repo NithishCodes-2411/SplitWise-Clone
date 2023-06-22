@@ -26,6 +26,9 @@ const createGroup = async (req, res) => {
   try {
     const newGroup = req.body;
 
+
+    newGroup.groupMembers.push(newGroup.groupOwner);
+
     // Checking if the owner is invalid
     const owner = newGroup.groupOwner;
     const checkOwner = await userModel.User.findOne({ emailId: owner });
@@ -35,7 +38,7 @@ const createGroup = async (req, res) => {
 
     // Checking if any of the members are invalid
     const usersOfNewGroup = newGroup.groupMembers;
-    const numOfUsers = usersOfNewGroup.length;
+    //const numOfUsers = usersOfNewGroup.length;
 
     for (let user of usersOfNewGroup) {
       const userFound = await userModel.User.findOne({ emailId: user });
@@ -57,9 +60,10 @@ const createGroup = async (req, res) => {
       if (error) {
         console.error(error);
       } else {
-        res.status(200).json({ message: "Data Saved successfully" , 
-        Id: newGroupinstance._id
-      });
+        res.status(200).json({
+          message: "Data Saved successfully",
+          Id: newGroupinstance._id
+        });
       }
     });
 
