@@ -28,7 +28,7 @@ const userRegistration = async (req, res) => {
             newUser.password = await bcrypt.hash(newUser.password, salt)
 
             //Creating new user in the database 
-            var id = await model.User.create(newUser)
+            let id = await model.User.create(newUser)
             res.status(200).json({
                 message: "User Registeration Success"
             })

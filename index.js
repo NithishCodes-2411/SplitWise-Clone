@@ -22,10 +22,12 @@ mongoose.connect(dataBaseURL)
 //requring routes
 const userRouter = require('./routes/userRouter');
 const groupRouter = require('./routes/groupRouter');
+const expenseRouter = require('./routes/expenseRouter');
 
 
 app.use('/api/user' , userRouter);
 app.use('/api/group' , groupRouter);
+app.use('/api/expense' , expenseRouter);
 
    
 app.listen(3000, () => {

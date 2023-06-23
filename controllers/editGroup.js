@@ -26,11 +26,11 @@ const editGroup = async (req, res) => {
 
 
     try {
-
+ 
+        //Finding the right group
         const group = await groupModel.findOne({
             _id: req.body.id
         })
-        //console.log(req.body.id);
         if (!group) return res.status(400).json({ message: "Inavlid group ID" });
 
         let editGroup = new groupModel(req.body);

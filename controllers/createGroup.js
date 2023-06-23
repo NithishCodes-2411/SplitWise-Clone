@@ -24,22 +24,27 @@ Accepts:
 const createGroup = async (req, res) => {
 
   try {
+
+
     const newGroup = req.body;
 
 
-    newGroup.groupMembers.push(newGroup.groupOwner);
-
+    
     // Checking if the owner is invalid
     const owner = newGroup.groupOwner;
     const checkOwner = await userModel.User.findOne({ emailId: owner });
     if (!checkOwner) {
       return res.json({ message: "Owner was invalid" });
     }
+    //adding the groupOwner tas groupMember
+    newGroup.groupMembers.push(newGroup.groupOwner);
+
+    /* -------------------------------------------------*/
+
 
     // Checking if any of the members are invalid
     const usersOfNewGroup = newGroup.groupMembers;
-    //const numOfUsers = usersOfNewGroup.length;
-
+   
     for (let user of usersOfNewGroup) {
       const userFound = await userModel.User.findOne({ emailId: user });
 
@@ -48,13 +53,18 @@ const createGroup = async (req, res) => {
       }
     }
 
+     /* -------------------------------------------------*/
+
+
     // Setting initial split of each member in the group to zero
     let splitarr = new Array(numOfUsers).fill(0);
     newGroup.split = splitarr;
 
+     /* -------------------------------------------------*/
+
+
     //creating an instance of a group to save it,
     const newGroupinstance = new Group(newGroup);
-
 
     newGroupinstance.save((error, savedData) => {
       if (error) {

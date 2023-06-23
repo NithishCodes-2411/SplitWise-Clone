@@ -2,6 +2,9 @@ const model = require('../models/userSchema');
 const bcrypt = require('bcrypt');
 const apiAuthentication = require('../helpers/tokenGenerator');
 
+const exp = require('../models/expenseSchema');
+const set = require('../models/settlementSchema');
+
 /* API name : /api/user/login
 Accepts : UserName and password
 */

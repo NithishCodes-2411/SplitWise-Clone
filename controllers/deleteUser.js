@@ -15,6 +15,9 @@ const deleteUser = async (req, res) => {
         validateUser(req.user, req.body.emailId);
         if (!validateUser) return res.status(402).json({ message: "user invalid" });
 
+         /* -------------------------------------------------*/
+
+
         //finding the right user to delete
         const user = await model.User.findOne({
             emailId: req.body.emailId
@@ -26,6 +29,10 @@ const deleteUser = async (req, res) => {
             })
         }
 
+         /* -------------------------------------------------*/
+
+
+         
         //deleting the right user
         const result = await model.User.deleteOne({ _id: ObjectId(user) });
 

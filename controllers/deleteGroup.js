@@ -19,6 +19,8 @@ This api recieves the group if amd deletes the group from the data database.
 const deleteGroup = async (req , res) =>{
 
     try {
+
+        //Finding if the group if is of the correct regular expression
         const groupId = req.body.id;
         const groupidValid = validateGroupId(groupId);
         
@@ -35,6 +37,9 @@ const deleteGroup = async (req , res) =>{
                 })
                 return;
             } 
+
+            /* -------------------------------------------------*/
+
         
             //deleteing the group
             let deleteGroup = await groupModel.deleteOne({
@@ -48,7 +53,7 @@ const deleteGroup = async (req , res) =>{
         }
         else{
             res.status(400).json({
-                message : "GRoup id Valid"
+                message : "Group id inValid"
             })
             return;
         }
