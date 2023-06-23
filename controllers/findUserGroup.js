@@ -40,7 +40,6 @@ const findUserGroup = async(req , res) =>{
         res.status(404).json({
             message : "some internal error"
         })
-
     }
 
 }

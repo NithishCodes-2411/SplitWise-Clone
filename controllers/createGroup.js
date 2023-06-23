@@ -17,7 +17,7 @@ Accepts:
     "user5@example.com"
   ],
   "groupCategory": "Friends",
-  "groupTotal": "100"
+  "groupTotal": 100
 }                 
 */
 
@@ -36,14 +36,16 @@ const createGroup = async (req, res) => {
     if (!checkOwner) {
       return res.json({ message: "Owner was invalid" });
     }
-    //adding the groupOwner tas groupMember
-    newGroup.groupMembers.push(newGroup.groupOwner);
+    //adding the groupOwner as groupMember
+    //newGroup.groupMembers.push(newGroup.groupOwner);
 
     /* -------------------------------------------------*/
 
 
-    // Checking if any of the members are invalid
+    // Checking if any of the members are invalid and setting the initial split of members to zero.
     const usersOfNewGroup = newGroup.groupMembers;
+
+    let splitJson = {}; // splitJson is an json user email as they key and splitAmount currently set to 0.
    
     for (let user of usersOfNewGroup) {
       const userFound = await userModel.User.findOne({ emailId: user });
@@ -51,14 +53,10 @@ const createGroup = async (req, res) => {
       if (!userFound) {
         return res.send("This member:" + JSON.stringify(user) + "was invalid");
       }
+      splitJson[user] = 0;
+
     }
-
-     /* -------------------------------------------------*/
-
-
-    // Setting initial split of each member in the group to zero
-    let splitarr = new Array(numOfUsers).fill(0);
-    newGroup.split = splitarr;
+    newGroup.split = splitJson;
 
      /* -------------------------------------------------*/
 

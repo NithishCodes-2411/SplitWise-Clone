@@ -26,7 +26,7 @@ const Group = new mongoose.Schema({
         default: "Others"
     },
     groupTotal: {
-        type: String,
+        type: Number ,
         default: 0
     },
     split: {

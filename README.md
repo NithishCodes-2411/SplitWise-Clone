@@ -1,1 +1,2 @@
-# SplitWise-Clone-MERN
+# SplitWise-Clone-node.js
+

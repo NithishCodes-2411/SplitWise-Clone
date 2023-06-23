@@ -2,9 +2,11 @@ const groupModel = require('../models/groupSchema');
 const validateGroupId = require('../helpers/validateGroupId');
 const userModel = require('../models/userSchema');
 const expenseModel = require('../models/expenseSchema');
+const addSplit = require('../controllers/addSplit');
 
 
 /*
+
 API name : /api/group/addExpense
 This is a function which helps add an expesne of a group
 ACCEPTS : Group id not null and groupId exist in DB . It also accepts Expense name , Expesnse description , Expense amount , Expense owner .
@@ -97,15 +99,18 @@ const addExpense = async (req, res) => {
         //console.log(expense)
         const newExp = new expenseModel(expense);
 
+        const addSplitFunCall = await addSplit( expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);
+
+
+
         let newExpense = await expenseModel.create(newExp);
-        console.log("all is well" , newExpense)
+        //console.log("all is well" , newExpense)
 
-
-
-
-
-
-
+        res.status(200).json({
+            message: "New expenses added",
+            Id: newExpense._id,
+            splitUpdateResponse: addSplitFunCall
+        })
 
     }
     catch (err) {
