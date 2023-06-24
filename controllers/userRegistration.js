@@ -4,7 +4,14 @@ const bcrypt = require('bcrypt')
 
 /*
 API name : /api/user/register
-Accepts : firstName, lastName, emailId, password
+Accepts : firstName, lastName, emailId, password , answer for a sec question
+Sample re.body : {
+    "firstName" : "Nithish" , 
+    "lastName" : "Thirunavukkasarsu" ,
+    "emailId" : "nituu2411@hmail.com" ,
+    "password" : "Nithish@2411" , 
+    "securityQuestion" : "Halifax"
+}
 */
 const userRegistration = async (req, res) => {
 
@@ -37,7 +44,7 @@ const userRegistration = async (req, res) => {
     }
     catch (err) {
 
-        console.log(err);
+        //console.log(err);
         res.status(500).json({
             message: "There is an error in the server side"
         });
