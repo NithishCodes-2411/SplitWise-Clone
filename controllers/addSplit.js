@@ -1,8 +1,11 @@
 /* 
 Add Split function :
+
 This function is called when a new expense is added.
 This function updates the memeber's split amunt present in the group.
 Parameters : groupId ,expenseAmount , expenseOwner , expenseMembers
+
+(Note : This function is not a direct API hit , it gets called when this api => "api/group/addExpense" gets hit)
 */
 
 
@@ -14,13 +17,11 @@ const addSplit =  async (groupId , expenseAmount , expenseOwner , expenseMembers
         _id : groupId
     })
 
-    console.log(group.split)
-    console.log("---------------------------")
+    //console.log(group.split)
+    
     group.groupTotal -= expenseAmount;
     group.split[0][expenseOwner] -= expenseAmount;
-    const expenseOwnerSplit = group.split[0][expenseOwner]
-    console.log(expenseOwnerSplit);
-
+    
 
     //console.log(group.split[0][expenseOwner])
     expensePerPerson = expenseAmount / expenseMembers.length;
@@ -39,14 +40,13 @@ const addSplit =  async (groupId , expenseAmount , expenseOwner , expenseMembers
     group.split[0][expenseOwner] = Math.round((group.split[0][expenseOwner] + Number.EPSILON) * 100 ) / 100;
 
     //updating back the split values to the group
-    console.log(group.split);
+    //console.log(group.split);
 
-    const splitSet = await groupModel.updateOne({
+    return  splitSet = await groupModel.updateOne({
         _id : groupId
     } , {
         $set:{
             split : group.split 
-    
         }
     });
     
