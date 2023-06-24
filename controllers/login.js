@@ -5,7 +5,8 @@ const apiAuthentication = require('../helpers/tokenGenerator');
 const exp = require('../models/expenseSchema');
 const set = require('../models/settlementSchema');
 
-/* API name : /api/user/login
+/* 
+API name : /api/user/login
 Accepts : UserName and password
 */
 
@@ -17,7 +18,7 @@ const login = async (req, res) => {
             emailId: req.body.emailId
         })
 
-        if (!user) {
+        if (!user){
             return res.status(401).json({
                 message: "Invalid email id or password"
             })

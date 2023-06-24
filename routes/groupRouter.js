@@ -9,6 +9,7 @@ const findUserGroup = require('../controllers/findUserGroup');
 const editGroup = require('../controllers/editGroup');
 const deleteGroup = require('../controllers/deleteGroup');
 const makeSettlement = require('../controllers/makeSettlement');
+const groupBalanceSheet =  require('../controllers/groupBalanceSheet');
 
 //createGroup router
 router.post('/createGroup' , createGroup);
@@ -27,6 +28,10 @@ router.post('/deleteGroup' , deleteGroup);
 
 //makeSettlement router
 router.post('/makeSettlement' , makeSettlement);
+
+//groupSettlement router
+router.post('/groupBalanceSheet' , groupBalanceSheet);
+
 
 
 module.exports = router;

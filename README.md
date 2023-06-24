@@ -1,6 +1,6 @@
 
 
-# Splitwise Clone Backend
+# SplitwiseClone - Node.js
 
 This is the backend implementation of a Splitwise clone application built with Node.js. It provides the server-side functionality for managing groups, transactions, and settlements between users.
 
@@ -27,20 +27,20 @@ This is the backend implementation of a Splitwise clone application built with N
 
 ### Prerequisites
 
-- Node.js (version x.x.x): You can download and install Node.js from [https://nodejs.org](https://nodejs.org).
+- Node.js (version v20.1.0): You can download and install Node.js from [https://nodejs.org](https://nodejs.org).
 
 ### Installation
 
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/splitwise-clone-backend.git
+   git clone https://github.com/NithishCodes-2411/SplitwiseClone-Node.js/tree/main
    ```
 
 2. Navigate to the project directory:
 
    ```shell
-   cd splitwise-clone-backend
+   cd splitwiseClone.Node.js
    ```
 
 3. Install dependencies:
