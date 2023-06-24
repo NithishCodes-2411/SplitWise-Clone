@@ -1,3 +1,5 @@
+/* (Note : This function is not a direct API hit , it gets called when this api => "api/group/groupBalanceSheet" gets hit)*/
+
 const simplifySplit = (transactions) => {
 
     let splits = new Array();//// Initialize an empty array to store splits
