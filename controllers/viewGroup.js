@@ -18,8 +18,8 @@ const viewgroup = async (req, res) =>
         }
         return res.send(group);
 
-    } catch (error) {
-        console.log(error);
+    } catch (err) {
+        console.log(err);
         res.status(500).json({
             message: "There is an error in the server side"
         });

@@ -26,12 +26,13 @@ const editExpense = async (req, res) => {
     try {
 
         const expense = req.body;
+        console.log(expense);
 
         let oldExpense = await expenseModel.findOne({
             _id : expense.expenseId
         })
         console.log(oldExpense)
-        console.log("-----")
+      
 
 
         // Checking if the owner is invalid
@@ -74,45 +75,25 @@ const editExpense = async (req, res) => {
                     expensePerMember: expense.expenseAmount / expense.expenseMembers.length ,
                     expenseAmount : expense.expenseAmount
                 }
-            },
-            { new: true } // Return the updated document
+            }
+           
         );
 
+       await clearSplit(oldExpense.groupId , oldExpense.expenseAmount   , oldExpense.expenseOwner  ,oldExpense.expenseMembers);
+       await addSplit (expense.groupId , expense.expenseAmount , expense.expenseOwner , expense.expenseMembers);
 
 
-       //await clearSplit(oldExpense.); 
-
-
-
-
-
-        res.status(200).json({
+        return res.status(200).json({
             message: "Changed edited successfully",
             updateResponse: expenseUpdate
         })
 
     }
 
-
-     
-
-
-
-
     catch (err) {
         console.log(err);
         res.status(500).json({ message: "Internal Server Error" });
     }
-
-
-
-
-
-
-
-
-
-
 
 }
 module.exports = editExpense;

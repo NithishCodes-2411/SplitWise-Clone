@@ -9,7 +9,8 @@ Accepts : groupId
 
 const groupBalanceSheet = async(req , res)=>{
 
-    //checking whether the group exist or not
+    try{
+            //checking whether the group exist or not
     const group = await groupModel.findOne({
         _id : req.body.groupId
     })
@@ -25,6 +26,17 @@ const groupBalanceSheet = async(req , res)=>{
     res.status(200).json({
         data : simplifySplit(group.split[0])
     })
+
+    }
+    catch(err){
+
+        console.log(err);
+        res.status(500).json({
+            message: "There is an error in the server side"
+        });
+
+    }
+
 
 
 

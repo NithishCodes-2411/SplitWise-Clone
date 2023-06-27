@@ -30,8 +30,8 @@ app.use('/api/group' , groupRouter);
 app.use('/api/expense' , expenseRouter);
 
    
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+app.listen(5000, () => {
+    console.log('Server started on port 5000');
 });
 
 module.exports = app;

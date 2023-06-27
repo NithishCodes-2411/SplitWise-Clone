@@ -77,7 +77,7 @@ const createGroup = async (req, res) => {
 
 
   } catch (error) {
-    console.log(error);
+    console.log(err);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
