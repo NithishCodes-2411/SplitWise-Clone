@@ -59,13 +59,13 @@ This is the backend implementation of a Splitwise clone application built with N
    npm start
    ```
 
-   The server will start running on `http://localhost:3000` (or a different port if specified).
+   The server will start running on `http://localhost:5000` (or a different port if specified).
 
 6. You're ready to use the Splitwise clone backend! You can now make API requests to the available endpoints.
 
 ## API Documentation
 
-For detailed information about the available endpoints and how to use them, refer the controller of that specific api endpoint. A simple API documentation is wriiten as comments on top
+For detailed information about the available endpoints and how to use them, refer the controller of that specific api endpoint. A simple API documentation is written as comments on top of every API implemtation.
 
 ## Contributing
 
@@ -73,7 +73,7 @@ Contributions are welcome! If you find any issues or have suggestions for improv
 
 ## Contact
 
-If you have any questions or inquiries, please contact [your-name](mailto:nituu2411@gmail.com).
+If you have any questions or inquiries, please contact [Nithish](mailto:nituu2411@gmail.com).
 
 ---
 
