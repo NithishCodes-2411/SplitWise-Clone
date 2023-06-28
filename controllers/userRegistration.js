@@ -1,5 +1,5 @@
 const model = require('../models/userSchema');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 
 /*
