@@ -7,12 +7,12 @@ This is the backend implementation of a Splitwise clone application built with N
 ## Features
 
 - User authentication and authorization
-- Create and manage groups
-- Add and remove group members - yet to implement
-- Create and settle transactions within groups
+- Create and manage and view groups
+- Add and remove group members 
+- Create , settle and view debts within groups
 - Calculate and update group balances
-- Generate settlement suggestions
-- Simplifying debt 
+- Simplifying debt and generate settlement suggestion
+- track monthly , weekly  expenses - yet to implement
 
 ## Technologies Used
 
@@ -65,7 +65,7 @@ This is the backend implementation of a Splitwise clone application built with N
 
 ## API Documentation
 
-For detailed information about the available endpoints and how to use them, refer to the API documentation provided in the [API Documentation](/docs/api.md) file.
+For detailed information about the available endpoints and how to use them, refer the controller of that specific api endpoint. A simple API documentation is wriiten as comments on top
 
 ## Contributing
 

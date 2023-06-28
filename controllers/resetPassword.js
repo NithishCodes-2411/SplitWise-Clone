@@ -48,9 +48,6 @@ const resetPassword = async(req, res) => {
             message: "There is an error in the server side"
         });
     }
-
-
-
 }
 
 module.exports = resetPassword;
