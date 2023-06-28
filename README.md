@@ -7,7 +7,7 @@ This is the backend implementation of a Splitwise clone application built with N
 ## Features
 
 - User authentication and authorization
-- Create and manage and view groups
+- Create add manage  groups
 - Add and remove group members 
 - Create , settle and view debts within groups
 - Calculate and update group balances
