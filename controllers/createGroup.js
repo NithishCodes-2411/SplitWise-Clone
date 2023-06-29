@@ -29,7 +29,7 @@ const createGroup = async (req, res) => {
     const newGroup = req.body;
 
 
-    
+
     // Checking if the owner is invalid
     const owner = newGroup.groupOwner;
     const checkOwner = await userModel.User.findOne({ emailId: owner });
@@ -46,7 +46,7 @@ const createGroup = async (req, res) => {
     const usersOfNewGroup = newGroup.groupMembers;
 
     let splitJson = {}; // splitJson is an json user email as they key and splitAmount currently set to 0.
-   
+
     for (let user of usersOfNewGroup) {
       const userFound = await userModel.User.findOne({ emailId: user });
 
@@ -58,7 +58,7 @@ const createGroup = async (req, res) => {
     }
     newGroup.split = splitJson;
 
-     /* -------------------------------------------------*/
+    /* -------------------------------------------------*/
 
 
     //creating an instance of a group to save it,

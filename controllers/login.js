@@ -18,7 +18,7 @@ const login = async (req, res) => {
             emailId: req.body.emailId
         })
 
-        if (!user){
+        if (!user) {
             return res.status(401).json({
                 message: "Invalid email id or password"
             })

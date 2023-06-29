@@ -19,23 +19,23 @@ const editUser = require('../controllers/editUser');
 router.post('/register', userRegister);
 
 //userLogin router
-router.post('/login' , login);
+router.post('/login', login);
 
 //reset password router.
-router.post('/resetPassword' , resetPassword);
+router.post('/resetPassword', resetPassword);
 
 //view user router
-router.post('/viewUser' , viewUser);
+router.post('/viewUser', viewUser);
 
 //delete user router
-router.post('/deleteUser' , deleteUser);
+router.post('/deleteUser', deleteUser);
 
 //edit user router
-router.post('/editUser' , editUser );
+router.post('/editUser', editUser);
 
 
 
 
 
-module.exports = router; 
+module.exports = router;
 

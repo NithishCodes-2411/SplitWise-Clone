@@ -17,7 +17,7 @@ mongoose.connect(dataBaseURL)
     .catch(() => {
         console.log('failed');
     })
-;
+    ;
 
 //requring routes
 const userRouter = require('./routes/userRouter');
@@ -25,11 +25,11 @@ const groupRouter = require('./routes/groupRouter');
 const expenseRouter = require('./routes/expenseRouter');
 
 
-app.use('/api/user' , userRouter);
-app.use('/api/group' , groupRouter);
-app.use('/api/expense' , expenseRouter);
+app.use('/api/user', userRouter);
+app.use('/api/group', groupRouter);
+app.use('/api/expense', expenseRouter);
 
-   
+
 app.listen(5000, () => {
     console.log('Server started on port 5000');
 });

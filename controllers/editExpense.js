@@ -29,10 +29,10 @@ const editExpense = async (req, res) => {
         console.log(expense);
 
         let oldExpense = await expenseModel.findOne({
-            _id : expense.expenseId
+            _id: expense.expenseId
         })
         console.log(oldExpense)
-      
+
 
 
         // Checking if the owner is invalid
@@ -59,7 +59,7 @@ const editExpense = async (req, res) => {
             }
         }
 
-       
+
         /* -------------------------------------------------*/
 
         const expenseUpdate = await expenseModel.findOneAndUpdate(
@@ -72,15 +72,15 @@ const editExpense = async (req, res) => {
                     expenseOwner: expense.expenseOwner,
                     expenseType: expense.expenseType,
                     expenseDate: expense.expenseDate,
-                    expensePerMember: expense.expenseAmount / expense.expenseMembers.length ,
-                    expenseAmount : expense.expenseAmount
+                    expensePerMember: expense.expenseAmount / expense.expenseMembers.length,
+                    expenseAmount: expense.expenseAmount
                 }
             }
-           
+
         );
 
-       await clearSplit(oldExpense.groupId , oldExpense.expenseAmount   , oldExpense.expenseOwner  ,oldExpense.expenseMembers);
-       await addSplit (expense.groupId , expense.expenseAmount , expense.expenseOwner , expense.expenseMembers);
+        await clearSplit(oldExpense.groupId, oldExpense.expenseAmount, oldExpense.expenseOwner, oldExpense.expenseMembers);
+        await addSplit(expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);
 
 
         return res.status(200).json({

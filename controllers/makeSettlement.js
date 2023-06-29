@@ -14,8 +14,8 @@ Sample req.body = {
 }
 
 */
-const makeSettlement = async(req , res) =>{
-    try{
+const makeSettlement = async (req, res) => {
+    try {
         const settlement = req.body;
 
         //Checking if the group exist
@@ -33,37 +33,37 @@ const makeSettlement = async(req , res) =>{
 
         //chaning the split in the group acc to the settlement 
         const split = group.split;
-        split[0][settlement.settleFrom] =  group.split[0][settlement.settleFrom] + settlement.settleAmount;
+        split[0][settlement.settleFrom] = group.split[0][settlement.settleFrom] + settlement.settleAmount;
         const num = group.split[0][settlement.settleTo] - settlement.settleAmount;
-        split[0][settlement.settleTo] = num; 
+        split[0][settlement.settleTo] = num;
 
 
         /* ----------------------------------------*/
 
         //updating the settlement into DB
         const updateGroupSplit = await groupModel.findOneAndUpdate({
-            _id : settlement.groupId
-        } , 
-        {
-           split : split  
-        })
+            _id: settlement.groupId
+        },
+            {
+                split: split
+            })
         let settlementObj = new settlementModel(settlement);
         let updateSettlement = settlementModel.create(settlementObj);
 
         return res.status(200).json({
-            message :  "Settlement done successfullly" ,
-            settlementUpdate : updateSettlement ,
-            splitUpdate : updateGroupSplit
+            message: "Settlement done successfullly",
+            settlementUpdate: updateSettlement,
+            splitUpdate: updateGroupSplit
         })
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.status(500).json({
             message: "There is an error in the server side"
         });
     }
- 
+
 }
 
 

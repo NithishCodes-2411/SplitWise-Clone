@@ -4,31 +4,31 @@ API Name : api/expense/viewExpense.
 This is  the api which holds a function which returns all the details about an expense 
 provided the expenseId 
 */
-const viewExpense = async(req , res) => {
+const viewExpense = async (req, res) => {
 
-    try{
+    try {
 
-        const expense =  await  expenseModel.findOne({
-            _id : req.body.expenseId
+        const expense = await expenseModel.findOne({
+            _id: req.body.expenseId
         })
-        if(expense){
+        if (expense) {
             res.status(200).json({
-                exp : expense
+                exp: expense
             })
         }
-        else{
+        else {
             res.status(404).json({
-                message : "expense not found"
+                message: "expense not found"
             })
         }
 
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.status(500).json({ message: "Internal Server Error" });
-      } 
-
     }
+
+}
 
 
 module.exports = viewExpense;

@@ -17,9 +17,9 @@ const User = new mongoose.Schema({
         type: String,
         required: true
     },
-    securityQuestion : {
-        type : String ,
-        required : true
+    securityQuestion: {
+        type: String,
+        required: true
     }
 })
 module.exports.User = mongoose.model('user', User);

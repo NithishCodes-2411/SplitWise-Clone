@@ -7,38 +7,38 @@ Accepts : User email ID
 This api finds the group that a user belongs
 */
 
-const findUserGroup = async(req , res) =>{
+const findUserGroup = async (req, res) => {
 
     try {
 
-        const {emailId} = req.body;
-        
+        const { emailId } = req.body;
+
         //Checking if the user exist in the database
         const user = await userModel.User.findOne({
-            emailId :emailId
+            emailId: emailId
         })
-        if(!user){
+        if (!user) {
             return res.status(400).json({
-                message : "User id not found"
+                message: "User id not found"
             })
         }
-      
+
         //finding the group in which the user belongs to  
         const groups = await groupModel.find({
-            groupMembers : emailId
+            groupMembers: emailId
         }).sort({
-            $natural : -1 //to get the newest first
+            $natural: -1 //to get the newest first
         })
         res.status(200).json({
-            groups : groups
+            groups: groups
         })
 
     }
-    
-    catch (err){
+
+    catch (err) {
         console.log(err);
         res.status(404).json({
-            message : "some internal error"
+            message: "some internal error"
         })
     }
 

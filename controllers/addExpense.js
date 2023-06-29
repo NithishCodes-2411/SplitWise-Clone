@@ -99,7 +99,7 @@ const addExpense = async (req, res) => {
         //console.log(expense)
         const newExp = new expenseModel(expense);
 
-        const addSplitFunCall = await addSplit( expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);
+        const addSplitFunCall = await addSplit(expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);
 
 
 
@@ -116,9 +116,9 @@ const addExpense = async (req, res) => {
     catch (err) {
         console.log(err);
         res.status(500).json({ message: "Internal Server Error" });
-      } 
-
     }
+
+}
 
 
 

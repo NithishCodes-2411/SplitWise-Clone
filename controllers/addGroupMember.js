@@ -14,44 +14,44 @@ Sample req.body: {
 */
 
 const addGroupMember = async (req, res) => {
-  try {
-    const addUser = req.body;
+    try {
+        const addUser = req.body;
 
-    const group = await groupModel.findOne({
-      _id: addUser.groupId
-    });
+        const group = await groupModel.findOne({
+            _id: addUser.groupId
+        });
 
-    if (!group) {
-      return res.status(404).json({
-        message: "Invalid group ID"
-      });
+        if (!group) {
+            return res.status(404).json({
+                message: "Invalid group ID"
+            });
+        }
+
+        console.log(group.split[0]);
+
+        const update_Split = group.split[0];
+
+        if (!group.split[0].hasOwnProperty(addUser.groupMemberAdd)) {
+
+            update_Split[addUser.groupMemberAdd] = 0;
+            update_Split.add(addUser.groupMemberAdd, 0);
+            console.log("--" + update_Split)
+            group.save();
+
+            return res.status(200).json({
+                message: "Group member added"
+            });
+        } else {
+            return res.status(400).json({
+                message: "Group member already exists in the group"
+            });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Internal server error"
+        });
     }
-
-    console.log(group.split[0]);
-
-    const update_Split = group.split[0];
-
-    if (!group.split[0].hasOwnProperty(addUser.groupMemberAdd)) {
-
-        update_Split[addUser.groupMemberAdd] = 0;
-        update_Split.add(addUser.groupMemberAdd , 0);
-       console.log("--" + update_Split)
-        group.save();
-    
-      return res.status(200).json({
-        message: "Group member added"
-      });
-    } else {
-      return res.status(400).json({
-        message: "Group member already exists in the group"
-      });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      message: "Internal server error"
-    });
-  }
 };
 
 module.exports = addGroupMember;

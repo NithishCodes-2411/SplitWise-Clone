@@ -11,7 +11,7 @@ This is the backend implementation of a Splitwise clone application built with N
 - Add and remove group members 
 - Create , settle and view debts within groups
 - Calculate and update group balances
-- Simplifying debt and generate settlement suggestion
+- Simplifying debt to generate settlement suggestion
 - track monthly , weekly  expenses - yet to implement
 
 ## Technologies Used

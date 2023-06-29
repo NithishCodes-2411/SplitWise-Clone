@@ -16,55 +16,54 @@ This api recieves the group if amd deletes the group from the data database.
 
 
 
-const deleteGroup = async (req , res) =>{
+const deleteGroup = async (req, res) => {
 
     try {
 
         //Finding if the group if is of the correct regular expression
         const groupId = req.body.id;
         const groupidValid = validateGroupId(groupId);
-        
-        if(groupidValid){
+
+        if (groupidValid) {
 
             //checking if the group is existing
             const groupFound = await groupModel.findOne({
-                _id : groupId
+                _id: groupId
             });
             console.log(groupFound);
-            if(!groupFound){
+            if (!groupFound) {
                 res.status(404).json({
-                    message : "Group not found"
+                    message: "Group not found"
                 })
                 return;
-            } 
+            }
 
             /* -------------------------------------------------*/
 
-        
+
             //deleteing the group
             let deleteGroup = await groupModel.deleteOne({
-                _id : groupId
-            }) 
+                _id: groupId
+            })
             res.status(200).json({
-                message : "Group deleted successfully",
-                deleteStatus : deleteGroup
-            })  
+                message: "Group deleted successfully",
+                deleteStatus: deleteGroup
+            })
 
         }
-        else{
+        else {
             res.status(400).json({
-                message : "Group id inValid"
+                message: "Group id inValid"
             })
             return;
         }
-        
+
     }
-    catch(error){
+    catch (error) {
         console.log(err);
         res.status(500).json({ message: "Internal Server Error" });
-      }     
+    }
 }
 module.exports = deleteGroup;
 
-       
- 
+

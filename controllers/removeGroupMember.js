@@ -1,4 +1,4 @@
-const groupModel  = require('../models/groupSchema');
+const groupModel = require('../models/groupSchema');
 const _ = require('lodash');
 
 /* API NAME ; api/group/removeGroupMember
@@ -16,47 +16,47 @@ Sample req.bod : {
 
 const removeGroupMember = async (req, res) => {
     try {
-      const removeUser = req.body;
-  
-      const group = await groupModel.findOne({
-        _id: removeUser.groupId
-      });
+        const removeUser = req.body;
 
-      if(!group){
-        res.status(404).json({
-            message : "invalid group id"
-        })
-      }
+        const group = await groupModel.findOne({
+            _id: removeUser.groupId
+        });
 
-      if(!group.split[0].hasOwnProperty(removeUser.groupMemberRemove)){
-        return res.status(404).json({
-            message : "Group Memeber not found"
-        })
-      }
-      
-      if(group.split[0][removeUser.groupMemberRemove]===0){
+        if (!group) {
+            res.status(404).json({
+                message: "invalid group id"
+            })
+        }
 
-        let updateSplit = _.omit(group.split[0] , removeUser.groupMemberRemove);
-        group.split = updateSplit
-        //console.log(group.split)
-        await group.save();
-        return res.status(200).json({
-            message :  "group Member removed succesfully"
-        })
+        if (!group.split[0].hasOwnProperty(removeUser.groupMemberRemove)) {
+            return res.status(404).json({
+                message: "Group Memeber not found"
+            })
+        }
 
-        
-      }
-      else{
-        res.status(400).json({
-            message : "The member havent settled some debt so he cant be removed from the group "
-        })
-      }
+        if (group.split[0][removeUser.groupMemberRemove] === 0) {
 
-  
+            let updateSplit = _.omit(group.split[0], removeUser.groupMemberRemove);
+            group.split = updateSplit
+            //console.log(group.split)
+            await group.save();
+            return res.status(200).json({
+                message: "group Member removed succesfully"
+            })
+
+
+        }
+        else {
+            res.status(400).json({
+                message: "The member havent settled some debt so he cant be removed from the group "
+            })
+        }
+
+
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
     }
-  };
-  
-  module.exports = removeGroupMember;
+};
+
+module.exports = removeGroupMember;

@@ -6,21 +6,32 @@ const router = express.Router();
 const addExpense = require('../controllers/addExpense');
 const editExpense = require('../controllers/editExpense');
 const deleteExpense = require('../controllers/deleteExpense');
-const viewExpense =  require('../controllers/viewExpense');
+const viewExpense = require('../controllers/viewExpense');
+const viewGroupExpense = require('../controllers/viewGroupExpense');
+const viewUserExpense =  require('../controllers/viewUserExpense')
+
+
 //add expense router.
-router.post('/addExpense' , addExpense);
+router.post('/addExpense', addExpense);
 
 //editExpense router.
-router.post('/editExpense' , editExpense);
+router.post('/editExpense', editExpense);
 
 //deleteExpense router.
-router.post('/deleteExpense' , deleteExpense);
+router.post('/deleteExpense', deleteExpense);
 
 //viewExpense router.
-router.post('/viewExpense' , viewExpense );
+router.post('/viewExpense', viewExpense);
+
+//view Group Expense router
+router.post('/viewGroupExpense' , viewGroupExpense);
+
+//viewUSerExpense router
+router.post('/viewUserExpense' , viewUserExpense);
 
 
 
 
-module.exports = router; 
+
+module.exports = router;
 

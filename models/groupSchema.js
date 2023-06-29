@@ -26,7 +26,7 @@ const Group = new mongoose.Schema({
         default: "Others"
     },
     groupTotal: {
-        type: Number ,
+        type: Number,
         default: 0
     },
     split: {
@@ -35,5 +35,5 @@ const Group = new mongoose.Schema({
 
 })
 
-const groupModel = new mongoose.model("Group", Group );
+const groupModel = new mongoose.model("Group", Group);
 module.exports = groupModel;

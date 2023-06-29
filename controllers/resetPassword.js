@@ -12,7 +12,7 @@ Sample req.body : {
 }
 */
 
-const resetPassword = async(req, res) => {
+const resetPassword = async (req, res) => {
     const emailId = req.body.emailID;
     const ans = req.body.answer
     const newPassword = req.body.newPassword
@@ -27,7 +27,7 @@ const resetPassword = async(req, res) => {
         }
 
         // Compare the security answer
-        if(!user.securityQuestion===ans){
+        if (!user.securityQuestion === ans) {
             console.log('Security question answer is incorrect');
             return;
         }
@@ -38,11 +38,11 @@ const resetPassword = async(req, res) => {
         user.password = hashedPassword;
         await user.save();
         return res.status(200).json({
-            mesaage : "Password reset sucessfull"
+            mesaage: "Password reset sucessfull"
         })
 
     }
-    catch(err) {
+    catch (err) {
         console.log(err);
         res.status(500).json({
             message: "There is an error in the server side"

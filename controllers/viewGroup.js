@@ -5,13 +5,12 @@ API name : /api/group/viewUser
 Accepts : Group id  
 */
 
-const viewgroup = async (req, res) =>
-{
+const viewgroup = async (req, res) => {
 
     try {
 
         const { groupId } = req.body;
-        const group = await Group.findOne({_id : groupId});
+        const group = await Group.findOne({ _id: groupId });
         if (!group) {
             res.send("Group not found");
             return;
