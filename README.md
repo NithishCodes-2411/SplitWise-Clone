@@ -7,12 +7,12 @@ This is the backend implementation of a Splitwise clone application built with N
 ## Features
 
 - User authentication and authorization
-- Create add manage  groups
+- Create add manage groups
 - Add and remove group members 
 - Create , settle and view debts within groups
 - Calculate and update group balances
 - Simplifying debt to generate settlement suggestion
-- track monthly , weekly  expenses - yet to implement
+- Track monthly expense of Groups and individual Users
 
 ## Technologies Used
 

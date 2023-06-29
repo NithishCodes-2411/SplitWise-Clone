@@ -8,7 +8,9 @@ const editExpense = require('../controllers/editExpense');
 const deleteExpense = require('../controllers/deleteExpense');
 const viewExpense = require('../controllers/viewExpense');
 const viewGroupExpense = require('../controllers/viewGroupExpense');
-const viewUserExpense =  require('../controllers/viewUserExpense')
+const viewUserExpense =  require('../controllers/viewUserExpense');
+const groupMonthlyExpense = require('../controllers/groupMonthlyExpense');
+const userMonthlyExpense = require('../controllers/userMonthlyExpense');
 
 
 //add expense router.
@@ -28,6 +30,12 @@ router.post('/viewGroupExpense' , viewGroupExpense);
 
 //viewUSerExpense router
 router.post('/viewUserExpense' , viewUserExpense);
+
+//groupMonthlyExpense router
+router.post('/groupMonthlyExpense' , groupMonthlyExpense);
+
+//userMonthly Expense router
+router.post('/userMonthlyExpense' , userMonthlyExpense);
 
 
 
