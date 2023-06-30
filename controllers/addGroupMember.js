@@ -17,6 +17,7 @@ const addGroupMember = async (req, res) => {
     try {
         const addUser = req.body;
 
+        //finding the right group
         const group = await groupModel.findOne({
             _id: addUser.groupId
         });
@@ -27,15 +28,13 @@ const addGroupMember = async (req, res) => {
             });
         }
 
-        console.log(group.split[0]);
-
         const update_Split = group.split[0];
 
         if (!group.split[0].hasOwnProperty(addUser.groupMemberAdd)) {
 
             update_Split[addUser.groupMemberAdd] = 0;
             update_Split.add(addUser.groupMemberAdd, 0);
-            console.log("--" + update_Split)
+        
             group.save();
 
             return res.status(200).json({
