@@ -10,8 +10,8 @@ const deleteUser = require('../controllers/deleteUser');
 const editUser = require('../controllers/editUser');
 
 //requring helpers
-//const validateToken = require('../helpers/validateToken');
-//const validateUser = require('../helpers/validateUser');
+const validateToken = require('../helpers/validateToken');
+const validateUser = require('../helpers/validateUser');
 
 
 
@@ -25,7 +25,7 @@ router.post('/login', login);
 router.post('/resetPassword', resetPassword);
 
 //view user router
-router.post('/viewUser', viewUser);
+router.post('/viewUser', validateToken, viewUser);
 
 //delete user router
 router.post('/deleteUser', deleteUser);

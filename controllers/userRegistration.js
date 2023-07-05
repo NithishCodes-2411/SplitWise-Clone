@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 /*
 API name : /api/user/register
 Accepts : firstName, lastName, emailId, password , answer for a sec question
-Sample re.body : {
+Sample req.body : {
     "firstName" : "Nithish" , 
     "lastName" : "Thirunavukkasarsu" ,
     "emailId" : "nituu2411@hmail.com" ,
