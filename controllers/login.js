@@ -8,6 +8,10 @@ const set = require('../models/settlementSchema');
 /* 
 API name : /api/user/login
 Accepts : UserName and password
+sample req.body : {
+    emaiId : "nituuu2411@gmail.com" , 
+    password : "sjbdwfnfn"
+} 
 */
 
 const login = async (req, res) => {
@@ -19,17 +23,19 @@ const login = async (req, res) => {
         })
 
         if (!user) {
-            return res.status(401).json({
-                message: "Invalid email id or password"
-            })
+            let err = new Error();
+            err.status = 401;
+            err.message = "Invalid email or password";
+            throw err;
         }
 
         //validating password using bcrypt
         const validCard = await bcrypt.compare(req.body.password, user.password);
         if (!validCard) {
-            return res.status(401).json({
-                message: "Invalid email id or password"
-            })
+            let err = new Error();
+            err.status = 401;
+            err.message = "Invalid email or password"
+            throw err;
         }
         else {
 
@@ -37,15 +43,17 @@ const login = async (req, res) => {
             const accessToken = apiAuthentication.generateAccessToken(req.body.emailId);
             res.status(200).json({
                 message: "User Login Success",
-                accessToken: accessToken
+                accessToken: accessToken ,
+                email: req.body.emailId
+
             })
 
         }
     }
     catch (err) {
-        console.log(err);
-        res.status(500).json({
-            message: "There is an error in the server side"
+        //console.log(err);
+        res.status(err.status).json({
+            message: err.message
         });
     }
 }
