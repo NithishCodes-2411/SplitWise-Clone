@@ -25,7 +25,7 @@ router.post('/login', login);
 router.post('/resetPassword', resetPassword);
 
 //view user router
-router.post('/viewUser', validateToken, viewUser);
+router.post('/viewUser', viewUser);
 
 //delete user router
 router.post('/deleteUser', deleteUser);

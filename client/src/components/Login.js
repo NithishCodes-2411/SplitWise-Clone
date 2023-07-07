@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import axios, { Axios } from 'axios';
 //import { useHistory } from 'react-router-dom';
 import Account from '../pages/Account';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 function Login() {
     //const history = useHistory();
@@ -35,7 +38,6 @@ function Login() {
         else {
             setSuccess(true);
             setEmailAddress(email);
-            //console.log(email + "logn")
         }
         setEmailAddressError(error);
     }
@@ -62,12 +64,11 @@ function Login() {
 
         e.preventDefault();
 
-        console.log(emailaddress);
-        console.log(password);
+        //console.log(emailaddress);
+        //console.log(password);
 
         try {
             if (success) {
-                //http://localhost:5000/api/expense/userMonthlyExpense
 
                 axios.post("http://localhost:5000/api/user/login", {
                     emailId: emailaddress,
@@ -77,11 +78,9 @@ function Login() {
                         if (res.status === 200) {
                             setEmailAddressError("");
                             setPasswordError("");
-                            navigate('/Account', { state: { emailaddress } });
-                            //history.push('/Account', { emailaddress }); 
-                            //navigate('/Account');
-                                //<Account tocken={emailaddress} />;
-                
+                            navigate('/DashBoard');
+                            localStorage.setItem("userEmail", emailaddress);
+
                         }
                     })
                     .catch(err => {
@@ -132,3 +131,4 @@ function Login() {
     );
 }
 export default Login;
+

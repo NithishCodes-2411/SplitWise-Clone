@@ -1,13 +1,18 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from 'react-router-dom';
 
+
 function NavigationMenu() {
   const navigate = useNavigate();
+  const handleClick = (e) => {
+    navigate('/DashBoard')
+
+  }
 
   return (
     <nav className="navbar bg-primary" data-bs-theme="dark">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="#" onClick={handleClick}>
           SplitWise-Clone
         </a>
         <Dropdown>
@@ -29,3 +34,4 @@ function NavigationMenu() {
 }
 
 export default NavigationMenu;
+
