@@ -1,7 +1,6 @@
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useNavigate } from 'react-router-dom';
 
-
 function NavigationMenu() {
   const navigate = useNavigate();
   const handleClick = (e) => {
@@ -21,6 +20,7 @@ function NavigationMenu() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
+          <Dropdown.Item href="#/action-2">DashBoard</Dropdown.Item>
             <Dropdown.Item onClick={() => navigate('/Account')}>
               Your Account
             </Dropdown.Item>

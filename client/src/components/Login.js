@@ -84,11 +84,9 @@ function Login() {
                         }
                     })
                     .catch(err => {
-                        console.log(err + "errr")
-                        if (err.response.status == 401 || err.response.status == 500) {
-                            setLoginError(err.response.data.message);
+                            console.log(err)
+                            //setLoginError(err.response.data.message);
                             alert("Invalid password or email")
-                        }
                     })
             }
 
