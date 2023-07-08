@@ -7,39 +7,34 @@ ACCEPTS : emailID , newPassword & answer for security Question
 This function checks if the answwer for thr secuirty question is right or wring. If it is rigth , then change it password.
 Sample req.body : {
     "emailID" : "user1@example.com" ,
-    "oldPassword" : "jsbvjkdsvn" ,
+   "oldPassword" : "nndsabcbsdc"
     "newPassword" : "hbfiwdfbhbh"
 }
 */
 
 const resetPassword = async (req, res) => {
+    console.log(req.body)
     const emailId = req.body.emailID;
-    const newPassword = req.body.newPassword;
-    const oldPass = req.body.oldPassword;
-
-    console.log(emailId +"  " + newPassword+" "+ oldPass);
+    const  oldPassword = req.body.oldPassword
+    const newPassword = req.body.newPassword
 
     try {
 
         const user = await userModel.User.findOne({ emailId: emailId });
 
-        if (!user) {
+      
+        const validCard = await bcrypt.compare(oldPassword, user.password);
+        console.log(validCard)
+        if (!validCard) {
             let err = new Error();
             err.status = 401;
-            err.message = "User not found"
+            err.message = "Invalid email or password"
             throw err;
-           
         }
+        //console.log(validCard)
 
-         //validating password using bcrypt
-         const validCard = await bcrypt.compare(oldPass, user.password);
-         console.log(validCard)
-         if (validCard === false) {
-             let err = new Error();
-             err.status = 401;
-             err.message = "Wrong old Password"
-             throw err;
-         }
+       
+
         const hashedPassword = await bcrypt.hash(newPassword, 10);
 
         // Update the password in the database
@@ -51,11 +46,9 @@ const resetPassword = async (req, res) => {
 
     }
     catch (err) {
-        console.log(err + "backendddd catch   ")
-        res.status(err.status).json({
-            message: err.message
-        });
-        
+        return res.status(err.status).json({
+            message : err.message
+        })
     }
 }
 

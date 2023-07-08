@@ -4,14 +4,14 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import userImage from '../pictures/bhavik_sticker.png';
 import Button from 'react-bootstrap/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EditIcon from '@mui/icons-material/Edit';
 import DisplayProfile from "../components/Profile/DisplayProfile";
-import ResetPassword from "../components/Profile/resetPassword"
+import ResetPassword from "../components/Profile/resetPassword";
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+
 
 function Account() {
   const [displayUserData, setDisplayUserData] = useState(true);
@@ -38,7 +38,7 @@ function Account() {
       <Container fluid className="vh-100">
         <Row className="h-100">
           <Col className="text-center">
-            <Image src={userImage} fluid width="65%" height="50%" />
+            {/* Place your content here */}
           </Col>
           <Col className="m-5 text-dark">
             <br />
@@ -51,7 +51,7 @@ function Account() {
                 onClick={handleDisPlayUserData}
                 style={{ marginRight: '40px' }}
               >
-                <RemoveRedEyeIcon /> View Profile
+                 View Profile
               </Button>
               <Button
                 variant="outline-primary"
@@ -72,6 +72,7 @@ function Account() {
             <br />
             {changePassword && <ResetPassword />}
             {displayUserData && <DisplayProfile />}
+           
           </Col>
         </Row>
       </Container>

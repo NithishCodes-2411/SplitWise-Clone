@@ -8,7 +8,7 @@ app.use(express.json());
 
 
 //Configuration of the Database to our server.
-const dataBaseURL = "mongodb+srv://nituu2411:iNKEbvDwdCPBp4hA@cluster0.tqmdo7f.mongodb.net/?retryWrites=true&w=majority";
+const dataBaseURL = "mongodb+srv://nituu2411:iNKEbvDwdCPBp4hA@cluster0.tqmdo7f.mongodb.net/";
 
 mongoose.connect(dataBaseURL)
     .then(() => {

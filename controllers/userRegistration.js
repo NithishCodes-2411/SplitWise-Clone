@@ -44,7 +44,7 @@ const userRegistration = async (req, res) => {
     }
     catch (err) {
 
-        console.log(err);
+        //console.log(err);
         res.status(500).json({
             message: "There is an error in the server side"
         });

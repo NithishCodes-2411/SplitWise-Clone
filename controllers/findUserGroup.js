@@ -18,10 +18,9 @@ const findUserGroup = async (req, res) => {
             emailId: emailId
         })
         if (!user) {
-            let err = new Error();
-            err.status = 400;
-            err.message = "User does not exist";
-            throw err;
+            return res.status(400).json({
+                message: "User id not found"
+            })
         }
 
         //finding the group in which the user belongs to  
@@ -30,7 +29,7 @@ const findUserGroup = async (req, res) => {
         }).sort({
             $natural: -1 //to get the newest first
         })
-        return res.status(200).json({
+        res.status(200).json({
             groups: groups
         })
 
@@ -39,7 +38,7 @@ const findUserGroup = async (req, res) => {
     catch (err) {
         console.log(err);
         res.status(404).json({
-            message:  err.message
+            message: "some internal error"
         })
     }
 
