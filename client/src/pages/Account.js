@@ -10,7 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EditIcon from '@mui/icons-material/Edit';
 import DisplayProfile from "../components/Profile/DisplayProfile";
-import ResetPassword from "../components/Profile/resetPassword";
+import ResetPassword from "../components/Profile/resetPassword"
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 function Account() {
