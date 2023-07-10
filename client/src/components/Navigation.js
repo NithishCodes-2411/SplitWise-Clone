@@ -22,7 +22,7 @@ function NavigationMenu() {
             <Dropdown.Menu>
             <Dropdown.Item href="#/action-2">DashBoard</Dropdown.Item>
               <Dropdown.Item onClick={() => navigate('/Account')}>
-                Your Account
+                Your Profile
               </Dropdown.Item>
               <Dropdown.Item href="#/action-2">Create a Group</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Logout</Dropdown.Item>

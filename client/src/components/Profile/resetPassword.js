@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import PublishIcon from '@mui/icons-material/Publish';
 import axios from 'axios';
 
+//have to add success bool
+
 const ResetPassword = () => {
   const [newPass, setNewPassword] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
@@ -32,15 +34,16 @@ const ResetPassword = () => {
     e.preventDefault();
     setSuccessMsg("");
 
-    if(!newPass.trim()&&!oldPass.trim()&&!confirmPass.trim()){
+    if (newPass.length == 0 || oldPass.length == 0 || confirmPass.length == 0) {
       setError("Required fields cannot be empty");
+      return;
     }
 
     if (newPass !== confirmPass) {
       setError("Confirm password doesn't match");
       return;
     }
-    if(oldPass === newPass){
+    if (oldPass === newPass) {
       setError("Your new Password is same as the old Password");
       return;
     }
@@ -54,13 +57,11 @@ const ResetPassword = () => {
       })
       .then((res) => {
         if (res.status === 200) {
+          setError("");
+          setNewPassword("");
+          setConfirmPass("");
+          setOldPass("");
           setSuccessMsg('Password changed successfully');
-          setError('');
-          setNewPassword('');
-          setConfirmPass('');
-          setOldPass('');
-        } else {
-          setError('An error occurred. Please try again later.');
         }
       })
       .catch((error) => {
@@ -80,6 +81,7 @@ const ResetPassword = () => {
           onChange={handleOldPassword}
           label="Old Password"
           variant="outlined"
+          value={oldPass}
         />
         <br />
         <TextField
@@ -87,6 +89,7 @@ const ResetPassword = () => {
           id="outlined-basic-1"
           label="New Password"
           variant="outlined"
+          value={newPass}
         />
         <br />
         <TextField
@@ -94,6 +97,7 @@ const ResetPassword = () => {
           id="outlined-basic-2"
           label="Confirm New Password"
           variant="outlined"
+          value={confirmPass}
         />
         <br />
       </div>

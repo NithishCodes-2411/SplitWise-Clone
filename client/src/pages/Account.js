@@ -3,42 +3,53 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Image from 'react-bootstrap/Image';
+import userImage from '../pictures/bhavik_sticker.png';
 import Button from 'react-bootstrap/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
+import Image from 'react-bootstrap/Image';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import EditIcon from '@mui/icons-material/Edit';
 import DisplayProfile from "../components/Profile/DisplayProfile";
 import ResetPassword from "../components/Profile/resetPassword";
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
-
+import EditProfile from "../components/Profile/EditProfile";
+import RemoveRedEyeSharpIcon from '@mui/icons-material/RemoveRedEyeSharp';
 
 function Account() {
   const [displayUserData, setDisplayUserData] = useState(true);
   const [changePassword, setChangePassword] = useState(false);
-  const [deleteUser, setDeleteUser] = useState(false);
-  const [editUser, setEditUser] = useState(false);
+  //const [deleteUser, setDeleteUser] = useState(false);
+  const [editProfile, setEditProfile] = useState(false);
 
   const handleChangePassword = () => {
-    setChangePassword(true);
+    setChangePassword(true);//main guy : changepassword
     setDisplayUserData(false);
+    setEditProfile(false);
   }
 
   const handleDisPlayUserData = () => {
-    setDisplayUserData(true);
+    setDisplayUserData(true);//main guy : displayuserdata
     setChangePassword(false);
+    setEditProfile(false);
+
+  }
+
+  const handleEditProfile = () => {
+    setEditProfile(true);//main guy: edit profile
+    setDisplayUserData(false);
+    setChangePassword(false);
+
   }
 
   return (
     <>
       <NavigationMenu />
       <br />
-      <h1 className="display-4">My Account</h1>
+      <br></br>
+      <span><h1 className="display-4  secondary ">My Profile</h1></span>
       <br />
       <Container fluid className="vh-100">
         <Row className="h-100">
           <Col className="text-center">
-            {/* Place your content here */}
+            <Image src={userImage} fluid width="65%" height="50%"  />
           </Col>
           <Col className="m-5 text-dark">
             <br />
@@ -51,7 +62,8 @@ function Account() {
                 onClick={handleDisPlayUserData}
                 style={{ marginRight: '40px' }}
               >
-                 View Profile
+                <RemoveRedEyeSharpIcon/>
+                View Profile
               </Button>
               <Button
                 variant="outline-primary"
@@ -61,18 +73,24 @@ function Account() {
               >
                 <ManageAccountsIcon /> Change Password
               </Button>
+
               <Button
                 variant="outline-primary"
-                className="button-margin"
-                disabled={!displayUserData && !changePassword} // Disable the button if neither view profile nor change password is active
+                className={`button-margin ${editProfile ? 'active' : ''}`}
+                onClick={handleEditProfile}
+                style={{ marginRight: '40px' }}
               >
-                <EditIcon /> Edit Details
+                <EditIcon />Edit Profile
               </Button>
+
+
+
             </div>
             <br />
             {changePassword && <ResetPassword />}
             {displayUserData && <DisplayProfile />}
-           
+            {editProfile && <EditProfile />}
+
           </Col>
         </Row>
       </Container>

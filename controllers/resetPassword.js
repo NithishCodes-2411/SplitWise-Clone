@@ -24,14 +24,14 @@ const resetPassword = async (req, res) => {
 
       
         const validCard = await bcrypt.compare(oldPassword, user.password);
-        console.log(validCard)
+      
         if (!validCard) {
             let err = new Error();
             err.status = 401;
             err.message = "Invalid email or password"
             throw err;
         }
-        //console.log(validCard)
+    
 
        
 
