@@ -9,7 +9,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-
 import Button from 'react-bootstrap/Button'
 
 
@@ -21,8 +20,7 @@ const DisplayProfile = () => {
   const [email, setEmail] = useState("");
 
   const emailId = localStorage.getItem('userEmail');
-  console.log(emailId + " accounts");
-
+ 
   if (!emailId.length == 0) {
     try {
       axios.post("http://localhost:5000/api/user/viewUser", {
@@ -47,6 +45,13 @@ const DisplayProfile = () => {
   else {
     //console.log("Email to get Data from backend is not returned properly from the local storage.")
   }
+
+  /*let fetchUserData  = new Array();
+  fetchUserData = viewUser(emailId)
+  setFirstName(fetchUserData[0]);
+  setLastName(fetchUserData[1]);
+  setEmail(fetchUserData[2]);*/
+
 
 
   const ValidationTextField = styled(TextField)({

@@ -18,9 +18,10 @@ const findUserGroup = async (req, res) => {
             emailId: emailId
         })
         if (!user) {
-            return res.status(400).json({
-                message: "User id not found"
-            })
+            let err = new Error();
+            err.status = 401;
+            err.message = "Invalid user";
+            throw err;
         }
 
         //finding the group in which the user belongs to  
@@ -29,17 +30,22 @@ const findUserGroup = async (req, res) => {
         }).sort({
             $natural: -1 //to get the newest first
         })
+        const numOfGroup = groups.length;
+        //console.log(numOfGroup + "dbcibkc")
+       // console.log(groups);
+
         res.status(200).json({
-            groups: groups
+            groups: groups , 
+            numOfGroup : numOfGroup
         })
 
     }
 
     catch (err) {
         console.log(err);
-        res.status(404).json({
-            message: "some internal error"
-        })
+        res.status(err.status).json({
+            message: err.message
+        });
     }
 
 }

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import userImage from '../pictures/bhavik_sticker.png';
+import userImage from '../../src/pictures/bhavik_sticker.png'
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -12,6 +12,7 @@ import DisplayProfile from "../components/Profile/DisplayProfile";
 import ResetPassword from "../components/Profile/resetPassword";
 import EditProfile from "../components/Profile/EditProfile";
 import RemoveRedEyeSharpIcon from '@mui/icons-material/RemoveRedEyeSharp';
+
 
 function Account() {
   const [displayUserData, setDisplayUserData] = useState(true);
