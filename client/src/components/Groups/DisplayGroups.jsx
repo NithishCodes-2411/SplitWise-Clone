@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import axios from "axios";
 import { Button, Typography } from '@mui/material';
 import { Container, Link } from '@mui/material';
 import NavigationMenu from "../Navigation";
-import { Paper } from '@mui/material';
-import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
-import { Card, CardContent, Box, AvatarGroup, Avatar, Stack, Grid } from '@mui/material';
-import img from '../../pictures/bhavik_sticker.png';
+import { CardContent, Box, Stack, Grid } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 const emailID = localStorage.getItem('userEmail');
 
 
@@ -34,6 +31,7 @@ const DisplayGroups = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(false);
     const [groupArr, setGroupArr] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (emailID) {
@@ -67,10 +65,10 @@ const DisplayGroups = () => {
         return noGroupJsx;
     }
 
-    const handleOnClick = (index) => {
+    function handleOnClick(index) {
         const groupId = groupArr[index]._id;
-        //console.log("group ikd : " + groupId)
-       
+        navigate('/DisplayGroupInfo', { state: { groupId: groupId } });
+
     }
 
     return (
@@ -88,7 +86,6 @@ const DisplayGroups = () => {
                     borderRadius: 5,
                     display: 'flex',
                     flexDirection: 'column',
-
 
                 }} >
 
@@ -108,11 +105,13 @@ const DisplayGroups = () => {
                                     backgroundColor: 'lightgray',
                                     cursor: 'pointer',
                                     transform: 'scale(1.05)',
-                                    transition: '0.4s'
-                                },
+                                    transition: '0.4s',
+                                    //onClick :handleOnClick(index)
+                                }
+
                             }}
                                 key={index}
-                                onClick = {handleOnClick(index)}
+                                onClick={() => handleOnClick(index)}
                             >
 
 
@@ -179,19 +178,38 @@ const DisplayGroups = () => {
                                         </Stack>
                                     </Grid>
                                 </Grid>
+                                <Box
+                                    component="a"
+                                    href="#"
+
+                                    sx={{
+                                        display: 'inline-block',
+                                        p: 1,
+                                        borderRadius: 1,
+                                        boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+                                    }}
+                                >
+                                    <ArrowOutwardIcon />
+                                </Box>
+
+
 
                             </CardContent>
-                            <br></br>
+
+
                         </>
 
 
                     ))}
 
                 </Grid>
+               
             </Container>
 
         </>
     );
 
 }
+
+
 export default DisplayGroups;

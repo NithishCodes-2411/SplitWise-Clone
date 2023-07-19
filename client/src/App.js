@@ -6,6 +6,7 @@ import Account from './pages/Account';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import DashBoard from './pages/Dashboard';
 import DisplayGroups from './components/Groups/DisplayGroups';
+import DisplayGroupInfo from './components/Groups/DisplayGroupInfo';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path='/Account' element={<Account />} />
           <Route path='/DashBoard' element={<DashBoard />} />
           <Route path='/DisplayGroup' element={<DisplayGroups />} />
+          <Route path='/DisplayGroupInfo' element = {<DisplayGroupInfo/>}/>
         </Routes>
       </BrowserRouter>
 

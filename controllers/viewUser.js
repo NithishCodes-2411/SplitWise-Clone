@@ -20,7 +20,7 @@ const viewUser = async (req, res) => {
         password: 0
       }
     );
-    console.log(req.body.emailId + " backend re.body ")
+    //console.log(req.body.emailId + " backend re.body ")
 
     if (!user) {
       let err = new Error();
@@ -29,7 +29,7 @@ const viewUser = async (req, res) => {
       throw err;
     }
 
-    console.log(user + "backend");
+    //console.log(user + "backend");
     return res.status(200).json({
       message: "Success",
       data: user

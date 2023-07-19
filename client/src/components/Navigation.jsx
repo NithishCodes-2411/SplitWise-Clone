@@ -12,7 +12,7 @@ function NavigationMenu() {
       <nav className="navbar bg-primary" data-bs-theme="dark">
         <div className="container-fluid">
           <a className="navbar-brand" href="#" onClick={handleClick}>
-            SplitWise-Clone
+            Equi-Split
           </a>
           <Dropdown>
             <Dropdown.Toggle variant="light" id="dropdown-basic">

@@ -1,6 +1,6 @@
 
 
-# SplitwiseClone - Node.js
+# EquiSplit - Node.js
 
 This is the backend implementation of a Splitwise clone application built with Node.js. It provides the server-side functionality for managing groups, transactions, and settlements between users.
 
