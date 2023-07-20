@@ -36,3 +36,86 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Animation to all MUI buttons */
+.MuiButtonBase-root {
+  position: relative;
+  overflow: hidden;
+}
+
+.MuiButtonBase-root::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.MuiButtonBase-root:hover::before {
+  left: 100%;
+}
+
+.MuiButtonBase-root::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: skewX(20deg);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.MuiButtonBase-root:hover::after {
+  left: -100%;
+}
+
+
+
+/* Add animation to all Bootstrap buttons */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: skewX(-20deg);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: skewX(20deg);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::after {
+  left: -100%;
+}

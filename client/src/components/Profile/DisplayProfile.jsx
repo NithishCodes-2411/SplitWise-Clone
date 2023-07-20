@@ -153,7 +153,10 @@ const DisplayProfile = () => {
 
 
       </div>
-     
+
+
+
+
     </>
   )
 
@@ -161,3 +164,6 @@ const DisplayProfile = () => {
 
 }
 export default DisplayProfile;
+
+
+

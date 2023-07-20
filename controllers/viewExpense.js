@@ -17,15 +17,18 @@ const viewExpense = async (req, res) => {
             })
         }
         else {
-            res.status(404).json({
-                message: "expense not found"
-            })
+            let err = new Error();
+            err.status = 400;
+            err.message = "Expense Not found";
+            throw err;
         }
 
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(err.status).json({
+            message: err.message
+          });
     }
 
 }

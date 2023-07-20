@@ -1,0 +1,135 @@
+/* CssForViewExpense.css */
+.containerr {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+.description {
+  font-size: 16px;
+  color: #666;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 20px;
+}
+
+.grid-item-title {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.members {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+button,
+a {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.cancel-button {
+  border: 1px solid #007bff;
+  color: #007bff;
+  background-color: transparent;
+}
+
+.cancel-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #fff;
+  margin-left: 10px;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Additional styling */
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.grid-container {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-item {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.grid-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-item {
+    margin-bottom: 10px;
+  }
+}
+.grid-item {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Add box shadow here */
+  transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}

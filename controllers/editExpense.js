@@ -1,6 +1,7 @@
 const expenseModel = require('../models/expenseSchema');
 const userModel = require('../models/userSchema');
 const clearSplit = require('../controllers/clearSplit');
+const addSplit = require('../controllers/addSplit');
 
 /*
 API Name : api/expense/editExpense
@@ -29,35 +30,10 @@ const editExpense = async (req, res) => {
         console.log(expense);
 
         let oldExpense = await expenseModel.findOne({
-            _id: expense.expenseId
+            _id: expense._id
         })
         console.log(oldExpense)
 
-
-
-        // Checking if the owner is invalid
-        const owner = expense.expenseOwner;
-        const checkOwner = await userModel.User.findOne({ emailId: owner });
-        if (!checkOwner) {
-            return res.json({ message: "Owner was invalid" });
-        }
-
-
-        /* -------------------------------------------------*/
-
-
-        for (let user of req.body.expenseMembers) {
-
-            var memberCheck = await userModel.User.findOne({
-                emailId: user
-            })
-
-            if (!memberCheck) {
-                return res.status(404).json({
-                    message: "Please ensure the members are valid"
-                })
-            }
-        }
 
 
         /* -------------------------------------------------*/
@@ -92,7 +68,7 @@ const editExpense = async (req, res) => {
 
     catch (err) {
         console.log(err);
-        res.status(500).json({ message: "Internal Server Error" });
+       // res.status(500).json({ message: "Internal Server Error" });
     }
 
 }

@@ -21,7 +21,7 @@ const DisplayGroupInfo = () => {
   const [group, setGroup] = useState(null);
   const location = useLocation();
   const groupId = location.state?.groupId;
-  const [groupExpense, setGroupExpense] = useState(false);
+  const [groupExpense, setGroupExpense] = useState(true);
 
   useEffect(() => {
     if (groupId) {
