@@ -8,20 +8,25 @@ import NavigationMenu from "../Navigation";
 import { Paper } from '@mui/material';
 import { Card, CardContent, Box, AvatarGroup, Avatar, Stack, Grid } from '@mui/material';
 import Groups2Icon from '@mui/icons-material/Groups2';
-import Nav from 'react-bootstrap/Nav';
 import GroupExpense from './GroupExpense';
 import { Typography } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import AddExpense from '../Expense/AddExpense';
+
 
 
 
 const DisplayGroupInfo = () => {
 
-
-  const [group, setGroup] = useState(null);
   const location = useLocation();
-  const groupId = location.state?.groupId;
-  const [groupExpense, setGroupExpense] = useState(true);
+  
+  const [group, setGroup] = useState([]);
+
+  const groupId = location.state?.groupId; // group ID sent while navigation
+  //console.log(groupId + "at display group info")
+  const [groupExpense, setGroupExpense] = useState(true);//a boolean to whether or not to diplay the group expense or not.
+  const [groupBalance , setGroupBalance] = useState(false);//a boolean to whether or not to diplay the group balance or not.
+  const [addExpense , setAddExpense ] = useState(false);//a boolean to whether or not to diplay the add expense page  or not.
+
 
   useEffect(() => {
     if (groupId) {
@@ -49,9 +54,13 @@ const DisplayGroupInfo = () => {
     );
   }
 
-  const handleGroupExpense = (e) => {
-    setGroupExpense(true)
-    // the other two are false
+  const handleGroupExpense = () => {
+    setGroupExpense(true);
+    setAddExpense(false);
+  }
+  const handleAddExpense = () => {
+    setAddExpense(true);
+    setGroupExpense(false)
   }
 
   
@@ -67,7 +76,7 @@ const DisplayGroupInfo = () => {
       <>
         <Container>
           <Paper elevation={3} sx={{
-            padding: '1.5rem', borderRadius: 15, "&:hover": {
+            padding: '1.5rem', borderRadius: 5, "&:hover": {
               //backgroundColor: 'lightgray',
               cursor: 'pointer',
               transform: 'scale(1.05)',
@@ -134,11 +143,11 @@ const DisplayGroupInfo = () => {
           <Button
             variant="outlined"
             color="primary"
-           // className={`button-margin ${editProfile ? 'active' : ''}`}
-            //onClick={handleEditProfile}
+            className={`button-margin ${groupBalance ? 'active' : ''}`}
+            onClick={handleAddExpense}
             style={{ marginRight: '40px' }}
           >
-            Your split
+            Add Expense
            
           </Button>
 
@@ -146,6 +155,7 @@ const DisplayGroupInfo = () => {
 
 
           {groupExpense && <GroupExpense groupId={groupId} />}
+          {addExpense && <AddExpense Group = {group} groupId={groupId} />}
 
 
         </Container>

@@ -75,7 +75,7 @@ function EditExpense(props) {
                 label="Expense Description"
                 variant="outlined"
                 name="expenseDescription"
-                value={formData.expenseDescription || ''}
+                value={formData.expenseDescription|| ''}
                 onChange={handleInputChange}
             />
             <br />
@@ -102,6 +102,7 @@ function EditExpense(props) {
             <Button style={{ marginRight: '45px' }}onClick={()=>navigate(-1)} variant="contained">
                     Back
                 </Button>
+                
                 <Button  onClick={handleEditExpense} variant="contained">
                     Save Changes
                 </Button>

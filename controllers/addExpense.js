@@ -7,7 +7,7 @@ const addSplit = require('../controllers/addSplit');
 
 /*
 
-API name : /api/group/addExpense
+API name : /api/expense/addExpense
 This is a function which helps add an expesne of a group
 ACCEPTS : Group id not null and groupId exist in DB . It also accepts Expense name , Expesnse description , Expense amount , Expense owner .
 
@@ -31,32 +31,30 @@ const addExpense = async (req, res) => {
 
     try {
 
-        let expense = req.body;
+        let expense = req.body.data;
+        //console.log(expense)
 
 
-        //Checking if the id is of the correct regular expression 
-        const groupIdValid = validateGroupId(expense.groupId);
-
-        if (!groupIdValid) {
-            res.status(400).json({
-                message: "Group id inValid"
-            })
-            return;
-        }
+      
 
         /* -------------------------------------------------*/
 
 
         //Checking if the group exist
+        //console.log(expense.groupId)
         const groupFound = await groupModel.findOne({
             _id: expense.groupId
         });
 
+        //console.log("group not found: " + groupFound)
+
+
         if (!groupFound) {
-            res.status(400).json({
-                message: "Group notfound"
-            })
-            return;
+
+            let err = new Error();
+            err.status = 400;
+            err.message = "Group Not found";
+            throw err;
         }
 
         /* -------------------------------------------------*/
@@ -67,31 +65,12 @@ const addExpense = async (req, res) => {
 
         const checkOwner = await userModel.User.findOne({ emailId: owner });
         if (!checkOwner || checkOwner === null) {
-            return res.json({ message: "Owner was invalid" });
+            let err = new Error();
+            err.status = 400;
+            err.message = "owner was invalid";
+            throw err;
         }
 
-        /* -------------------------------------------------*/
-
-        //checking if the expenseMembers are valid
-        const usersOfExpense = expense.expenseMembers;
-
-
-        if (!Array.isArray(usersOfExpense)) {
-            return res.status(400).json({
-                message: "Invalid group members provided"
-            });
-        }
-        for (let user of usersOfExpense) {
-            const userFound = await userModel.User.findOne({
-                emailId: user
-            });
-
-            if (!userFound) {
-                return res.status(400).json({
-                    message: `Invalid member: ${user}`
-                });
-            }
-        }
 
         /* -------------------------------------------------*/
 
@@ -106,6 +85,7 @@ const addExpense = async (req, res) => {
         let newExpense = await expenseModel.create(newExp);
         //console.log("all is well" , newExpense)
 
+       
         res.status(200).json({
             message: "New expenses added",
             Id: newExpense._id,
@@ -115,7 +95,10 @@ const addExpense = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.status(500).json({ message: "Internal Server Error" });
+        res.status(err.status).json({
+            message: err.message
+          });
+        
     }
 
 }

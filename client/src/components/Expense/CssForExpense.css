@@ -133,3 +133,42 @@ a {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-2px);
 }
+
+
+
+
+
+
+/* AddExpense.css */
+
+.add-expense-form {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 1.0);
+  max-width: 700px;
+  margin:  auto;
+  margin-top: 10;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.error-icon {
+  margin-right: 10px;
+}
+
+.error-svg {
+  width: 24px;
+  height: 24px;
+  fill: #721c24;
+}
+

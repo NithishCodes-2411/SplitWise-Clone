@@ -1,4 +1,4 @@
-import './CssForViewExpense.css';
+import './CssForExpense.css';
 import { useNavigate } from 'react-router-dom';
 import { Grid } from '@mui/material';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import EditExpense from './EditExpense';
 function ViewExpense(props) {
     const navigate = useNavigate();
     const expenseId = props.id;
-    const [expenseInfo, setExpenseInfo] = useState([]);
+    const [expenseInfo, setExpenseInfo] = useState(null);
 
     useEffect(() => {
         if (expenseId) {

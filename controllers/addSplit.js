@@ -18,10 +18,11 @@ const addSplit = async (groupId, expenseAmount, expenseOwner, expenseMembers) =>
         _id: groupId
     })
     if (!group) {
-        res.status(400).json({
-            message: "Group notfound"
-        })
-        return;
+        let err = new Error();
+        err.status = 400;
+        err.message = "Group not found";
+        throw err;
+        
     }
 
     group.groupTotal -= expenseAmount;
