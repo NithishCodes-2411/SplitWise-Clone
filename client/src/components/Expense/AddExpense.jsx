@@ -61,15 +61,15 @@ const AddExpense = (props) => {
   // Initialize Formik with validation schema
   const formik = useFormik({
     initialValues: {},
-    onSubmit: (values) => {
+    onSubmit: async(values) => {
      
-      validationSchema
+      await validationSchema
         .validate(expenseData, { abortEarly: false })
         .then((validData) => {
           // Validation passed
           setError('');
 
-          console.log('Form Values:', validData);
+          //console.log('Form Values:', validData);
           const makeAPICall = addExpenseAPI(validData)
           if(makeAPICall){
             //setExpenseData(initialExpenseData);
@@ -241,8 +241,6 @@ const AddExpense = (props) => {
               {success}
             </Box>
           )}
-
-
         </div>
       </Grid>
     </div>
@@ -252,30 +250,25 @@ const AddExpense = (props) => {
 
 async function addExpenseAPI (data) {
 
-
   if(data){
     try{
       axios.post('http://localhost:5000/api/expense/addExpense', {
         data
             })
                 .then((res) => {
-                  //console.log(res.status)
-                      return true;
-                  
+                  console.log(res.status)
+                      return true; 
                 })
                 .catch((error) => {
-                    //console.log(error);
+                    console.log(error);
                     return false 
                 });
-
     }
     catch(err){
       console.log(err)
     }
   }
-
-  
-
+  return false;
 }
 
 export default AddExpense;

@@ -10,7 +10,6 @@ Sample req.body : {
 }
 */
 const viewGroupExpense = async(req , res) =>{
-    //console.log("api end reached")
 
     try{
         const groupId = req.body.groupId;
@@ -39,7 +38,6 @@ const viewGroupExpense = async(req , res) =>{
         });
     }
     catch(err){
-        //console.log(err);
         res.status(err.status).json({
             message: err.message
           });

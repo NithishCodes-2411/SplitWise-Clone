@@ -27,27 +27,16 @@ Sample req.body : {
 }
 
 */
+
 const addExpense = async (req, res) => {
 
     try {
 
         let expense = req.body.data;
-        //console.log(expense)
-
-
-      
-
-        /* -------------------------------------------------*/
-
-
-        //Checking if the group exist
-        //console.log(expense.groupId)
+   
         const groupFound = await groupModel.findOne({
             _id: expense.groupId
         });
-
-        //console.log("group not found: " + groupFound)
-
 
         if (!groupFound) {
 
@@ -56,9 +45,6 @@ const addExpense = async (req, res) => {
             err.message = "Group Not found";
             throw err;
         }
-
-        /* -------------------------------------------------*/
-
 
         //Checking if the owner is a valid user
         const owner = expense.expenseOwner;
@@ -71,11 +57,8 @@ const addExpense = async (req, res) => {
             throw err;
         }
 
-
-        /* -------------------------------------------------*/
-
         expense.expensePerMember = expense.expenseAmount / expense.expenseMembers.length;
-        //console.log(expense)
+   
         const newExp = new expenseModel(expense);
 
         const addSplitFunCall = await addSplit(expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);
@@ -83,7 +66,6 @@ const addExpense = async (req, res) => {
 
 
         let newExpense = await expenseModel.create(newExp);
-        //console.log("all is well" , newExpense)
 
        
         res.status(200).json({
@@ -102,7 +84,6 @@ const addExpense = async (req, res) => {
     }
 
 }
-
 
 
 module.exports = addExpense;

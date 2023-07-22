@@ -27,33 +27,31 @@ const editExpense = async (req, res) => {
     try {
 
         const expense = req.body;
-        console.log(expense);
+        //console.log(req.body );
 
         let oldExpense = await expenseModel.findOne({
             _id: expense._id
         })
-        console.log(oldExpense)
-
-
+       
 
         /* -------------------------------------------------*/
 
         const expenseUpdate = await expenseModel.findOneAndUpdate(
-            { _id: expense.expenseId },
+            { _id: expense._id},
             {
-                $set: {
-                    groupId: expense.groupId,
-                    expenseName: expense.expenseName,
-                    expenseDescription: expense.expenseDescription,
-                    expenseOwner: expense.expenseOwner,
-                    expenseType: expense.expenseType,
-                    expenseDate: expense.expenseDate,
-                    expensePerMember: expense.expenseAmount / expense.expenseMembers.length,
-                    expenseAmount: expense.expenseAmount
-                }
-            }
-
-        );
+              $set: {
+                groupId: expense.groupId,
+                expenseName: expense.expenseName,
+                expenseDescription: expense.expenseDescription,
+                expenseOwner: expense.expenseOwner,
+                expenseType: expense.expenseType,
+                expenseDate: expense.expenseDate,
+                expensePerMember: expense.expenseAmount / expense.expenseMembers.length,
+                expenseAmount: expense.expenseAmount,
+              },
+            },
+            { new: true } // Add this option to get the updated document
+          );
 
         await clearSplit(oldExpense.groupId, oldExpense.expenseAmount, oldExpense.expenseOwner, oldExpense.expenseMembers);
         await addSplit(expense.groupId, expense.expenseAmount, expense.expenseOwner, expense.expenseMembers);

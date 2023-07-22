@@ -5,7 +5,7 @@ const clearSplit = require('../controllers/clearSplit');
 API name : api/expense/deleteExpense
 This function is used to delete the expense added to the group.
 
-Accepts :(GroupId and expenseId)
+Accepts :(expenseId)
 
 */
 
@@ -18,9 +18,10 @@ const deleteExpense = async (req, res) => {
       })
 
       if (!expense) {
-         return res.send(404).json({
-            message: "Expense not found"
-         })
+         let err = new Error();
+         err.status = 400;
+         err.message = "Expense Not found";
+         throw err;
       }
       const deleteExpense = await expenseModel.deleteOne({
          _id: req.body.expenseId
