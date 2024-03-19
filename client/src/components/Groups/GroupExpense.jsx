@@ -13,7 +13,6 @@ import { Chart, ArcElement, CategoryScale, LinearScale, Title, Tooltip, Legend, 
 import 'chartjs-plugin-datalabels';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Link from '@mui/material/Link';
 Chart.register(ArcElement, CategoryScale, LinearScale, Title, Tooltip, Legend, SubTitle, BarController);
 
 function GroupExpense(props) {
@@ -49,7 +48,8 @@ function GroupExpense(props) {
         .then((res) => {
           if (res.status === 200) {
             handleClose()
-            alert("Expense Deleted Successfully")
+            window.location.reload()
+            //alert("Expense Deleted Successfully")
           }
         })
         .catch((error) => {
@@ -130,7 +130,7 @@ function GroupExpense(props) {
             <Grid
               container
               sx={{
-                backgroundColor: 'lightgray',
+               
                 padding: '1.5rem',
                 borderRadius: 15,
                 boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',

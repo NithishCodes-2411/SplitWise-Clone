@@ -2,11 +2,6 @@ import react from 'react';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios, { Axios } from 'axios';
-//import { useHistory } from 'react-router-dom';
-import Account from '../pages/Account';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-
 
 function Login() {
     //const history = useHistory();

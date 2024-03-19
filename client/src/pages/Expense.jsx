@@ -7,9 +7,7 @@ function Expense() {
     const location = useLocation();
     const expenseId = location.state?.expenseId;
     const display = location.state?.displayWhat;
-    //console.log(expenseId + "expense page" + display);
     
-
     if(display){
         return (
             <>

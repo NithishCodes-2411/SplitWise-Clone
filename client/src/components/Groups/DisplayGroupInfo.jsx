@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import GroupBalance from './GroupBalance';
 import axios from "axios";
 import { Button } from '@mui/material';
 import { Container, Link } from '@mui/material';
@@ -22,7 +22,6 @@ const DisplayGroupInfo = () => {
   const [group, setGroup] = useState([]);
 
   const groupId = location.state?.groupId; // group ID sent while navigation
-  //console.log(groupId + "at display group info")
   const [groupExpense, setGroupExpense] = useState(true);//a boolean to whether or not to diplay the group expense or not.
   const [groupBalance , setGroupBalance] = useState(false);//a boolean to whether or not to diplay the group balance or not.
   const [addExpense , setAddExpense ] = useState(false);//a boolean to whether or not to diplay the add expense page  or not.
@@ -57,10 +56,18 @@ const DisplayGroupInfo = () => {
   const handleGroupExpense = () => {
     setGroupExpense(true);
     setAddExpense(false);
+    setGroupBalance(false);
   }
   const handleAddExpense = () => {
     setAddExpense(true);
     setGroupExpense(false)
+    setGroupBalance(false);
+  }
+  const handleGroupBalance = () => {
+    setGroupBalance(true);
+    setAddExpense(false);
+    setGroupExpense(false)
+
   }
 
   
@@ -134,8 +141,8 @@ const DisplayGroupInfo = () => {
           <Button
             variant="outlined"
             color="primary"
-            //className={`button-margin ${changePassword ? 'active' : ''}`}
-            //onClick={handleChangePassword}
+            className={`button-margin ${groupBalance ? 'active' : ''}`}
+            onClick={handleGroupBalance}
             style={{ marginRight: '40px' }}
           >
             GroupBalance
@@ -143,7 +150,7 @@ const DisplayGroupInfo = () => {
           <Button
             variant="outlined"
             color="primary"
-            className={`button-margin ${groupBalance ? 'active' : ''}`}
+            className={`button-margin ${addExpense ? 'active' : ''}`}
             onClick={handleAddExpense}
             style={{ marginRight: '40px' }}
           >
@@ -151,10 +158,8 @@ const DisplayGroupInfo = () => {
            
           </Button>
 
-
-
-
           {groupExpense && <GroupExpense groupId={groupId} />}
+          {groupBalance && <GroupBalance groupId = {groupId}/>}
           {addExpense && <AddExpense Group = {group} groupId={groupId} />}
 
 
@@ -165,28 +170,6 @@ const DisplayGroupInfo = () => {
   );
 };
 
-
-/*function findOwnerName (email){
-  //console.log(emailId + "   kjsbckjbscbdcb")
-
-
-    axios.post("http://localhost:5000/api/user/viewUser", {
-      emailId: email
-    })
-      .then((res) => {
-        //console.log(res.data.data.firstN)
-        return res.data.data.firstName
-        })
-      
-      .catch(err => {
-        console.log(err);
-        return
-      });
-  
- 
-  return ;
-
-}*/
 
 
 export default DisplayGroupInfo;

@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import Button from '@mui/material/Button';
 import * as Yup from 'yup';
 import axios from 'axios';
+    
 
 
 
@@ -53,7 +54,6 @@ const AddExpense = (props) => {
     expenseOwner: Yup.string().required('Expense Owner is required'),
     expenseMembers: Yup.array().min(1, 'Select at least one Expense Member'),
     expenseDate: Yup.date().required('Expense Date is required'),
-    expenseCurrency: Yup.string().required('Expense Currency is required'),
     expenseAmount: Yup.number().required('Expense Amount is required').positive('Expense Amount must be positive'),
     expenseCategory: Yup.string().required('Expense Category is required'),
   });
@@ -103,7 +103,7 @@ const AddExpense = (props) => {
 
   return (
     <div className="container">
-      <Grid sx={{ marginTop: 5 }}>
+      <Grid sx={{ marginTop: 10 }}>
         <div className="add-expense-form">
           <TextField
             fullWidth
@@ -182,21 +182,7 @@ const AddExpense = (props) => {
             onChange={(e) => setExpenseData({ ...expenseData, expenseDate: e.target.value })}
           />
 
-          <TextField
-            id="expenseCurrency"
-            select
-            label="Expense Currency"
-            defaultValue=""
-            variant="outlined"
-            sx={{ marginBottom: '1rem', width: '100%' }}
-            value={expenseData.expenseCurrency}
-            onChange={(e) => setExpenseData({ ...expenseData, expenseCurrency: e.target.value })}
-          >
-            <MenuItem value="INR">INR</MenuItem>
-            <MenuItem value="EUR">EUR</MenuItem>
-            <MenuItem value="USD">USD</MenuItem>
-            <MenuItem value="CAD">CAD</MenuItem>
-          </TextField>
+          
 
           <TextField
             fullWidth
@@ -250,6 +236,9 @@ const AddExpense = (props) => {
 
 async function addExpenseAPI (data) {
 
+  data.expenseMembers = ValidateExpenseMem(data.expenseMembers , data.expenseOwner)
+  ///console.log(data.expenseMembers);
+
   if(data){
     try{
       axios.post('http://localhost:5000/api/expense/addExpense', {
@@ -271,4 +260,32 @@ async function addExpenseAPI (data) {
   return false;
 }
 
+function ValidateExpenseMem(array, elementToAdd) {
+  const uniqueSet = new Set(array);
+  uniqueSet.add(elementToAdd);
+  return Array.from(uniqueSet);
+}
+
 export default AddExpense;
+/*
+
+Expense Currency ka text field.
+
+<TextField
+            id="expenseCurrency"
+            select
+            label="Expense Currency"
+            defaultValue=""
+            variant="outlined"
+            sx={{ marginBottom: '1rem', width: '100%' }}
+            value={expenseData.expenseCurrency}
+            onChange={(e) => setExpenseData({ ...expenseData, expenseCurrency: e.target.value })}
+          >
+            <MenuItem value="INR">INR</MenuItem>
+            <MenuItem value="EUR">EUR</MenuItem>
+            <MenuItem value="USD">USD</MenuItem>
+            <MenuItem value="CAD">CAD</MenuItem>
+          </TextField>
+
+
+*/

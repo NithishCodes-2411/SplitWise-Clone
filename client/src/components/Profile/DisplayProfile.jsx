@@ -28,8 +28,6 @@ const DisplayProfile = () => {
       })
         .then((res) => {
           if (res.status === 200) {
-            console.log(JSON.stringify(res.data.data) + "accounts"
-            );
             setFirstName(res.data.data.firstName);
             setLastName(res.data.data.lastName);
             setEmail(res.data.data.emailId);
@@ -153,10 +151,6 @@ const DisplayProfile = () => {
 
 
       </div>
-
-
-
-
     </>
   )
 
